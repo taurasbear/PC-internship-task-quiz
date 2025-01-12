@@ -20,6 +20,7 @@
     <ProjectReference Include="..\pc.quiz.client\pc.quiz.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\PC.Quiz.Infrastructure\PC.Quiz.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
