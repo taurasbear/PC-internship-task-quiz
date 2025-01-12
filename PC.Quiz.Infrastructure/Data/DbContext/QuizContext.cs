@@ -8,13 +8,13 @@
         public QuizContext(DbContextOptions options)
         : base(options) { }
 
+        public DbSet<AnswerOption> AnswerOptions { get; set; }
+
         public DbSet<Entry> Entries { get; set; }
 
         public DbSet<EntryAnswer> EntryAnswers { get; set; }
 
         public DbSet<Question> Questions { get; set; }
-
-        public DbSet<AnswerOption> AnswerOptions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

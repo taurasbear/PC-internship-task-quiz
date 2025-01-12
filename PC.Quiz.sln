@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC.Quiz.Domain", "PC.Quiz.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC.Quiz.Infrastructure", "PC.Quiz.Infrastructure\PC.Quiz.Infrastructure.csproj", "{9761CC52-28FA-43AE-A90B-50CF6BD39E00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC.Quiz.Application", "PC.Quiz.Application\PC.Quiz.Application.csproj", "{DEFE77C2-10A8-4262-A436-BDD905755807}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{9761CC52-28FA-43AE-A90B-50CF6BD39E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9761CC52-28FA-43AE-A90B-50CF6BD39E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9761CC52-28FA-43AE-A90B-50CF6BD39E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEFE77C2-10A8-4262-A436-BDD905755807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEFE77C2-10A8-4262-A436-BDD905755807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEFE77C2-10A8-4262-A436-BDD905755807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEFE77C2-10A8-4262-A436-BDD905755807}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

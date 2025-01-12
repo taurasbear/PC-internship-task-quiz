@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PC.Quiz.Application\PC.Quiz.Application.csproj" />
     <ProjectReference Include="..\pc.quiz.client\pc.quiz.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
