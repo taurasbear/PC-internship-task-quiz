@@ -1,5 +1,4 @@
 import axiosClient from "../../api/axiosClient";
-import { ApiError } from "../../shared/types/ApiError";
 
 class QuestionService {
     static async getAll(): Promise<any> {
