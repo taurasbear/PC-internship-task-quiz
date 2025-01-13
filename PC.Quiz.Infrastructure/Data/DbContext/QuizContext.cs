@@ -42,6 +42,8 @@
                 .HasOne(ao => ao.Question)
                 .WithMany(q => q.AnswerOptions)
                 .HasForeignKey(ao => ao.QuestionId);
+
+            modelBuilder.Seed();
         }
     }
 }

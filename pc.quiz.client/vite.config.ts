@@ -47,7 +47,7 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/weatherforecast': {
+            '^/api': {
                 target,
                 secure: false
             }
@@ -56,6 +56,13 @@ export default defineConfig({
         https: {
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),
+        }
+    },
+    define: {
+        'process.env': {
+            REACT_APP_AXIOS_TIMEOUT: JSON.stringify(process.env.REACT_APP_AXIOS_TIMEOUT),
+            REACT_APP_QUERY_CLIENT_RETRY: JSON.stringify(process.env.REACT_APP_QUERY_CLIENT_RETRY),
+            REACT_APP_QUERY_CLIENT_STATE_TIME: JSON.stringify(process.env.REACT_APP_QUERY_CLIENT_STATE_TIME),
         }
     }
 })

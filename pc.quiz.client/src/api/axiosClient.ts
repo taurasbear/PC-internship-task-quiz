@@ -5,7 +5,7 @@ const axiosClient = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    timeout: process.env.REACT_APP_AXIOS_TIMEOUT ? parseInt(process.env.REACT_APP_AXIOS_TIMEOUT) : 0,
+    //timeout: process.env.REACT_APP_AXIOS_TIMEOUT ? parseInt(process.env.REACT_APP_AXIOS_TIMEOUT) : 0,
 });
 
 interface ErrorResponse {
