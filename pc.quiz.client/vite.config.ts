@@ -63,6 +63,7 @@ export default defineConfig({
             REACT_APP_AXIOS_TIMEOUT: JSON.stringify(process.env.REACT_APP_AXIOS_TIMEOUT),
             REACT_APP_QUERY_CLIENT_RETRY: JSON.stringify(process.env.REACT_APP_QUERY_CLIENT_RETRY),
             REACT_APP_QUERY_CLIENT_STATE_TIME: JSON.stringify(process.env.REACT_APP_QUERY_CLIENT_STATE_TIME),
+            REACT_APP_STARTING_QUESTION_ID: JSON.stringify(process.env.REACT_APP_STARTING_QUESTION_ID),
         }
     }
 })
