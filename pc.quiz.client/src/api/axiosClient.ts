@@ -5,7 +5,7 @@ const axiosClient = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    //timeout: process.env.REACT_APP_AXIOS_TIMEOUT ? parseInt(process.env.REACT_APP_AXIOS_TIMEOUT) : 0,
+    timeout: process.env.REACT_APP_AXIOS_TIMEOUT ? parseInt(process.env.REACT_APP_AXIOS_TIMEOUT) : 0,
 });
 
 interface ErrorResponse {
@@ -16,13 +16,13 @@ axiosClient.interceptors.response.use(
     (response: AxiosResponse): AxiosResponse => {
         return response;
     },
-    async (error: AxiosError<ErrorResponse>): Promise<any> => {
+    async (error: AxiosError<ErrorResponse>): Promise<never> => {
         const apiError = {
             message: error.response?.data?.message ?? 'An unexpected error occured',
             status: error.response?.status ?? 500,
         };
 
-        Promise.reject(apiError);
+        return Promise.reject(apiError);
     }
 );
 
