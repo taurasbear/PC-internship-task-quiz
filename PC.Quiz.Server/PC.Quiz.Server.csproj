@@ -24,4 +24,8 @@
     <ProjectReference Include="..\PC.Quiz.Infrastructure\PC.Quiz.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
