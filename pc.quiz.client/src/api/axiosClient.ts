@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
+import { ApiError } from '../shared/types/ApiError';
 
 const axiosClient = axios.create({
     baseURL: '/api',
@@ -17,7 +18,7 @@ axiosClient.interceptors.response.use(
         return response;
     },
     async (error: AxiosError<ErrorResponse>): Promise<never> => {
-        const apiError = {
+        const apiError: ApiError = {
             message: error.response?.data?.message ?? 'An unexpected error occured',
             status: error.response?.status ?? 500,
         };

@@ -4,10 +4,7 @@ import { useQuestions } from '../utils/queries/QuestionQueries';
 
 const Quiz = () => {
     const { data, isLoading, error } = useQuestions();
-
-    if (error) {
-        console.error('error:', error);
-    }
+    
     return (
         <Box sx={{ maxWidth: 400, margin: '0 auto' }}>
             <Typography variant='h2' gutterBottom>
