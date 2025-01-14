@@ -2,8 +2,8 @@
 {
     public enum QuestionType
     {
-        single,
-        multiple,
-        text
+        Single,
+        Multiple,
+        Text
     }
 }

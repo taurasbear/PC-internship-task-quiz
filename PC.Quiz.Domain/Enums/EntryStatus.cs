@@ -2,8 +2,8 @@
 {
     public enum EntryStatus
     {
-        ongoing,
-        finished,
-        cancelled
+        Ongoing,
+        Finished,
+        Cancelled
     }
 }
