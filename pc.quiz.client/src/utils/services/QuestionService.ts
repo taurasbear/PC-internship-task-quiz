@@ -6,6 +6,11 @@ class QuestionService {
         const response = await axiosClient.get('/question');
         return response.data;
     }
+
+    static async getQuestionDetails(id: number): Promise<Question[]> {
+        const response = await axiosClient.get(`/question/${id}`);
+        return response.data;
+    }
 }
 
 export default QuestionService;

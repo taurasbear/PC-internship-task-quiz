@@ -12,10 +12,14 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         const savedQuestionId = localStorage.getItem('currentQuestionId');
+        const startingId = process.env.REACT_APP_STARTING_QUESTION_ID
+            ? parseInt(process.env.REACT_APP_STARTING_QUESTION_ID)
+            : 1;
+
         if (savedQuestionId) {
             setCurrentQuestionId(Number(savedQuestionId));
         } else {
-            setCurrentQuestionId(process.env.REACT_APP_STARTING_QUESTION_ID ? parseInt(process.env.REACT_APP_STARTING_QUESTION_ID) : 1);
+            setCurrentQuestionId(startingId);
         }
     }, []);
 
@@ -26,7 +30,6 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
     }, [currentQuestionId])
 
     const value = useMemo(() => ({ currentQuestionId, setCurrentQuestionId }), [currentQuestionId]);
-
     return (
         <QuizContext.Provider value={value}>
             {children}
