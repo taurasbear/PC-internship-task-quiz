@@ -45,7 +45,7 @@
                 new AnswerOption { Id = 13, DisplayValue = "32 km", NormalizedValue = "32 KM", Correct = true, QuestionId = 4 },
 
                 // Question 5
-                new AnswerOption { Id = 14, DisplayValue = "YELLOW", NormalizedValue = "YELLOW", Correct = true, QuestionId = 5 },
+                new AnswerOption { Id = 14, DisplayValue = "Yellow", NormalizedValue = "YELLOW", Correct = true, QuestionId = 5 },
 
                 // Question 6
                 new AnswerOption { Id = 15, DisplayValue = "25", NormalizedValue = "25", Correct = true, QuestionId = 6 },
