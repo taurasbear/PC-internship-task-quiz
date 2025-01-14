@@ -1,7 +1,5 @@
 ﻿namespace PC.Quiz.Application.Features.QuestionFeatures.GetQuestionDetails
 {
-    using PC.Quiz.Domain.Enums;
-
     public sealed record GetQuestionDetailsResponse
     {
         public long Id { get; set; }

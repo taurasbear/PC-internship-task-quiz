@@ -10,9 +10,9 @@
 
         public int Score { get; set; }
 
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
-        public DateTime DateTime { get; set; }
+        public DateTime? DateTime { get; set; }
 
         public ICollection<EntryAnswer> EntryAnswers { get; set; } = new Collection<EntryAnswer>();
     }
