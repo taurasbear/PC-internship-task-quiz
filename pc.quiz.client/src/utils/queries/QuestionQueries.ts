@@ -14,7 +14,6 @@ export const useQuestions = (): UseQueryResult<Question[], ApiError> => {
 };
 
 export const useQuestion = (id: number | null): UseQueryResult<Question, ApiError> => {
-    console.log("useQuestion> id: ", id);
     return useQuery({
         queryKey: ['question', id],
         queryFn: () => QuestionService.getQuestionDetails(Number(id)),
