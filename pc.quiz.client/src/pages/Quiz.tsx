@@ -1,21 +1,45 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { useQuestion } from '../utils/queries/QuestionQueries';
 import { useQuiz } from '../utils/QuizContext';
 import QuizQuestion from '../components/Quiz/QuizQuestion';
+import { EntryAnswer } from '../shared/types/entities/EntryAnswer';
+import { handleQuestionType } from '../shared/utils/handleQuestionType';
+import { useAddEntryAnswerSingle } from '../utils/queries/EntryAnswerQueries';
+import { QuestionType } from '../shared/types/enums/QuestionType';
 
 const Quiz = () => {
     const { currentQuestionId, setCurrentQuestionId } = useQuiz();
 
     const { data: question, isLoading, error } = useQuestion(currentQuestionId);
+    const addEntryAnswerSingle = useAddEntryAnswerSingle();
 
     console.log("Quiz> question: ", question);
 
-    const handleNextQuestion = () => {
-        const nextQuestionId = Number(currentQuestionId) + 1;
-        setCurrentQuestionId(nextQuestionId)
-    };
+    const handleAnswerSubmit = async (entryAnswers: EntryAnswer[]) => {
+        try {
+            const entryAnswer: EntryAnswer = entryAnswers[0];
+            switch (question?.type) {
+                case QuestionType.Single:
+                    addEntryAnswerSingle.mutateAsync({
+                        questionId: entryAnswer.questionId,
+                        answerOptionId: Number(entryAnswer.answerOptionId),
+                        entryId: entryAnswer.questionId
+                    });
+                    break;
+                case QuestionType.Multiple:
+                    console.log('Quiz> multiple hasnt been implemented yet')
+                    break;
+                case QuestionType.Text:
+                    console.log('Quiz> text hasnt been implemented yet')
+                    break;
+                default:
+                    throw new Error(`Unsupported question type: ${question?.type}`);
+            }
+        } catch (error) {
+            console.error("Quiz> Error on handleAnswerSubmit:", error);
+        }
+    }
 
     return (
         <Box sx={{ maxWidth: 1000, margin: '0 auto' }}>
@@ -43,8 +67,8 @@ const Quiz = () => {
                 ))}
             </Box>}
 
-            {question && <QuizQuestion question={question} />}
-            <Button variant='contained' onClick={handleNextQuestion}>Next question</Button>
+            {question && <QuizQuestion question={question} onAnswerSubmit={handleAnswerSubmit} />}
+
         </Box>
     );
 }

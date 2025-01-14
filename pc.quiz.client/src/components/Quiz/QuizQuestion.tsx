@@ -1,8 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Question } from "../../shared/types/entities/Question";
 import QuestionAnswers from "./QuestionAnswers";
+import { useState } from "react";
+import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
 
-const QuizQuestion = ({ question }: { question: Question }) => {
+const QuizQuestion = ({ question, onAnswerSubmit }: {
+    question: Question,
+    onAnswerSubmit: (entryAnswers: EntryAnswer[]) => void
+}) => {
+
+    const [entryAnswers, setEntryAnswers] = useState<EntryAnswer[]>([]);
+
+    const handleNextQuestion = () => {
+        onAnswerSubmit(entryAnswers);
+    };
 
     return (
         <Box>
@@ -12,7 +23,9 @@ const QuizQuestion = ({ question }: { question: Question }) => {
             <QuestionAnswers
                 questionType={question.type}
                 answerOptions={question.answerOptions}
+                setEntryAnswers={setEntryAnswers}
             />
+            <Button variant='contained' onClick={handleNextQuestion}>Next question</Button>
         </Box>
     );
 }

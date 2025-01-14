@@ -3,6 +3,7 @@ import { createContext, useState, useContext, ReactNode, useMemo, useEffect } fr
 interface QuizContextProps {
     currentQuestionId: number | null;
     setCurrentQuestionId: (id: number | null) => void;
+    //TODO: store Email and EntryId
 }
 
 const QuizContext = createContext<QuizContextProps | undefined>(undefined);

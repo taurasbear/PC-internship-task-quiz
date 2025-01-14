@@ -1,12 +1,22 @@
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { AnswerOption } from "../../../shared/types/entities/AnswerOption";
+import { useState } from "react";
 
-const SingleAnswers = ({ answerOptions }: { answerOptions: AnswerOption[] }) => {
+const SingleAnswers = ({ answerOptions, onChange }: {
+    answerOptions: AnswerOption[],
+    onChange: (value: number) => void
+}) => {
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        onChange(Number(value));
+    }
+
     return (
         <Box>
             <FormControl>
                 <FormLabel id="single-question-type-label">Please select one:</FormLabel>
-                <RadioGroup>
+                <RadioGroup onChange={handleChange}>
                     {answerOptions?.map(answer =>
                         <FormControlLabel
                             key={answer.id}

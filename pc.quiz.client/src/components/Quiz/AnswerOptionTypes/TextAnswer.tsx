@@ -1,9 +1,18 @@
 import { Box, TextField } from "@mui/material";
 
-const TextAnswer = () => {
+const TextAnswer = ({ onChange }: {
+    onChange: (value: string) => void
+}) => {
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        onChange(value);
+    }
+
     return (
         <Box>
             <TextField
+                onChange={handleChange}
                 required
                 id="text-question-type-field"
                 label="Please type your answer"
