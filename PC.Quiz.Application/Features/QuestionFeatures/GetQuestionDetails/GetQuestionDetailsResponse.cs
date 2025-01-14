@@ -8,7 +8,7 @@
 
         public string Title { get; set; } = string.Empty;
 
-        public QuestionType Type { get; set; }
+        public string Type { get; set; }
 
         public IList<AnswerOptionResponse> AnswerOptions { get; set; } = new List<AnswerOptionResponse>();
 
