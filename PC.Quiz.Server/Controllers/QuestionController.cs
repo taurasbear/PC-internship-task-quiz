@@ -1,25 +1,25 @@
 ﻿namespace PC.Quiz.Server.Controllers
 {
+    using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using PC.Quiz.Domain.Entities;
-    using PC.Quiz.Infrastructure.Data.DbContext;
+    using PC.Quiz.Application.Features.QuestionFeatures.GetQuestionDetails;
 
     [Route("api/[controller]")]
     [ApiController]
     public class QuestionController : ControllerBase
     {
-        private readonly QuizContext quizContext;
+        private readonly IMediator mediator;
 
-        public QuestionController(QuizContext quizContext)
+        public QuestionController(IMediator mediator)
         {
-            this.quizContext = quizContext;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IList<Question>> GetAllQuestions()
+        public async Task<ActionResult<GetQuestionDetailsResponse>> GetAllQuestionDetails([FromQuery] long id)
         {
-            return await quizContext.Questions.ToListAsync();
+            var response = await this.mediator.Send(new GetQuestionDetailsRequest(id));
+            return this.Ok(response);
         }
     }
 }

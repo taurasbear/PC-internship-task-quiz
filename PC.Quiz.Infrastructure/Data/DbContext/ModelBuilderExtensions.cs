@@ -10,16 +10,16 @@
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Question>().HasData(
-                new Question { Id = 1, Title = "What is the biggest type of bear?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.single },
-                new Question { Id = 2, Title = "Where do bears live?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.multiple },
-                new Question { Id = 3, Title = "What was the name of the bear who served in the Polish military?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.text },
-                new Question { Id = 4, Title = "From how far away can a bear smell food?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.single },
-                new Question { Id = 5, Title = "What is a bear's favourite colour?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.text },
-                new Question { Id = 6, Title = "How many years do bears live?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.text },
-                new Question { Id = 7, Title = "How many species of bear are there?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.single },
-                new Question { Id = 8, Title = "How much does a bear weigh?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.multiple },
-                new Question { Id = 9, Title = "Are bears cute?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.text },
-                new Question { Id = 10, Title = "What is a bear's favourite food?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.single }
+                new Question { Id = 1, Title = "What is the biggest type of bear?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Single },
+                new Question { Id = 2, Title = "Where do bears live?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Multiple },
+                new Question { Id = 3, Title = "What was the name of the bear who served in the Polish military?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Text },
+                new Question { Id = 4, Title = "From how far away can a bear smell food?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Single },
+                new Question { Id = 5, Title = "What is a bear's favourite colour?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Text },
+                new Question { Id = 6, Title = "How many years do bears live?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Text },
+                new Question { Id = 7, Title = "How many species of bear are there?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Single },
+                new Question { Id = 8, Title = "How much does a bear weigh?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Multiple },
+                new Question { Id = 9, Title = "Are bears cute?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Text },
+                new Question { Id = 10, Title = "What is a bear's favourite food?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Single }
             );
 
             modelBuilder.Entity<AnswerOption>().HasData(

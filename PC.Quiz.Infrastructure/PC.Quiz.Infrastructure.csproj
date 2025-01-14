@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PC.Quiz.Application\PC.Quiz.Application.csproj" />
     <ProjectReference Include="..\PC.Quiz.Domain\PC.Quiz.Domain.csproj" />
   </ItemGroup>
 
