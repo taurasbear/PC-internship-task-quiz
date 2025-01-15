@@ -11,7 +11,7 @@
         public override async Task<GetQuestionDetailsResponse> Handle(GetQuestionDetailsRequest request, CancellationToken cancellationToken)
         {
             //TODO: include EntryAnswers in response
-            Question question = await this.unitOfWork.QuestionRepository.GetQuestionDetailsAsync(request.id, cancellationToken);
+            Question question = await this.unitOfWork.QuestionRepository.GetQuestionDetailsByIdAsync(request.questionId, cancellationToken);
 
             return this.mapper.Map<GetQuestionDetailsResponse>(question);
         }

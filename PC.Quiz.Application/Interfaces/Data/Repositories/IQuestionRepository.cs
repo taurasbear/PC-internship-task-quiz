@@ -10,6 +10,8 @@
         /// <param name="id">The ID of the question</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>A Question of the specified ID with its EntryOptions and AnswerOptions</returns>
-        Task<Question> GetQuestionDetailsAsync(long id, CancellationToken cancellationToken);
+        Task<Question> GetQuestionDetailsByIdAsync(long questionId, CancellationToken cancellationToken);
+
+        Task<Question> GetQuestionByIdAsync(long questionId, CancellationToken cancellationToken);
     }
 }

@@ -12,9 +12,17 @@
         public QuestionRepository(QuizContext quizContext) : base(quizContext)
         { }
 
-        public async Task<Question> GetQuestionDetailsAsync(long id, CancellationToken cancellationToken)
+        public async Task<Question> GetQuestionByIdAsync(long questionId, CancellationToken cancellationToken)
         {
-            return await this.quizContext.Questions.Include(q => q.AnswerOptions).FirstOrDefaultAsync(q => q.Id == id);
+            return await this.quizContext.Questions.FindAsync(questionId, cancellationToken);
+        }
+
+        public async Task<Question> GetQuestionDetailsByIdAsync(long questionId, CancellationToken cancellationToken)
+        {
+            return await this.quizContext.Questions
+                .Include(q => q.AnswerOptions)
+                .Include(q => q.EntryAnswers)
+                .FirstOrDefaultAsync(q => q.Id == questionId, cancellationToken);
         }
     }
 }
