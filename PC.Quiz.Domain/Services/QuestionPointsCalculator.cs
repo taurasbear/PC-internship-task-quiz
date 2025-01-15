@@ -24,7 +24,7 @@
             int correctEntryAnswerCount = 0;
             foreach (EntryAnswer entryAnswer in entryAnswerList)
             {
-                if (correctAnswerOptionIds.Contains(entryAnswer.AnswerOptionId))
+                if (correctAnswerOptionIds.Contains((long)entryAnswer.AnswerOptionId))
                 {
                     correctEntryAnswerCount++;
                 }

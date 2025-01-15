@@ -8,6 +8,8 @@
         public AddEntryAnswersMapper()
         {
             this.CreateMap<AddEntryAnswersRequest.EntryAnswerRequest, EntryAnswer>();
+            this.CreateMap<AddEntryAnswersRequest, List<EntryAnswer>>()
+                .ConvertUsing((src, dest, context) => context.Mapper.Map<List<EntryAnswer>>(src.entryAnswers));
         }
     }
 }

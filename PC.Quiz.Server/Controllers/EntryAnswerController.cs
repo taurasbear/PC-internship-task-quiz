@@ -2,7 +2,8 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using PC.Quiz.Application.Features.EntryAnswerFeatures.AddEntryAnswerSingle;
+    using PC.Quiz.Application.Features.EntryAnswerFeatures.AddEntryAnswers;
+    using System.Threading;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -16,13 +17,11 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult<AddEntryAnswerSingleResponse>> AddEntryAnswerSingle(
-            [FromQuery] long questionId,
-            [FromQuery] long answerOptionId,
-            [FromQuery] long? entryId,
+        public async Task<ActionResult<AddEntryAnswersResponse>> AddEntryAnswerSingle(
+            [FromBody] IList<AddEntryAnswersRequest.EntryAnswerRequest> entryAnswers,
             CancellationToken cancellationToken)
         {
-            var response = await this.mediator.Send(new AddEntryAnswerSingleRequest(questionId, answerOptionId, entryId), cancellationToken);
+            var response = await this.mediator.Send(new AddEntryAnswersRequest(entryAnswers), cancellationToken);
             return this.Ok(response);
         }
     }

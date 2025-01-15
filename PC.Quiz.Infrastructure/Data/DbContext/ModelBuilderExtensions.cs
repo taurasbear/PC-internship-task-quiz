@@ -9,6 +9,10 @@
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Entry>().HasData(
+                new Entry { Id = 1, Email = "test@example.com", Status = EntryStatus.Ongoing, Score = 0 }
+            );
+
             modelBuilder.Entity<Question>().HasData(
                 new Question { Id = 1, Title = "What is the biggest type of bear?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Single },
                 new Question { Id = 2, Title = "Where do bears live?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Multiple },
