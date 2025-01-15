@@ -1,6 +1,6 @@
 export interface EntryAnswer {
     questionId: number,
+    entryId: number,
     normalizedValue?: string,
-    entryId?: number,
     answerOptionId?: number,
 }

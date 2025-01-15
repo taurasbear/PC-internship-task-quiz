@@ -1,18 +1,11 @@
 import axiosClient from "../../api/axiosClient";
+import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
 
 class EntryAnswerService {
-    static async addEntryAnswerSingle(
-        questionId: number,
-        answerOptionId: number,
-        entryId?: number
+    static async addEntryAnswers(
+        entryAnswers:EntryAnswer[]
     ) : Promise<number> {
-        const params = new URLSearchParams();
-        params.append('questionId', questionId.toString());
-        params.append('answerOptionId', answerOptionId.toString());
-        if (entryId) {
-            params.append('entryId', entryId.toString());
-        }
-        const response = await axiosClient.post(`/entryanswer?${params.toString()}`);
+        const response = await axiosClient.post('/entryanswer', entryAnswers);
         return response.data;
     }
 }

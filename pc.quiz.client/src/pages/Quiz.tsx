@@ -4,38 +4,20 @@ import { useQuestion } from '../utils/queries/QuestionQueries';
 import { useQuiz } from '../utils/QuizContext';
 import QuizQuestion from '../components/Quiz/QuizQuestion';
 import { EntryAnswer } from '../shared/types/entities/EntryAnswer';
-import { handleQuestionType } from '../shared/utils/handleQuestionType';
-import { useAddEntryAnswerSingle } from '../utils/queries/EntryAnswerQueries';
+import { useAddEntryAnswers } from '../utils/queries/EntryAnswerQueries';
 import { QuestionType } from '../shared/types/enums/QuestionType';
 
 const Quiz = () => {
     const { currentQuestionId, setCurrentQuestionId } = useQuiz();
 
     const { data: question, isLoading, error } = useQuestion(currentQuestionId);
-    const addEntryAnswerSingle = useAddEntryAnswerSingle();
+    const addEntryAnswers = useAddEntryAnswers();
 
     console.log("Quiz> question: ", question);
 
     const handleAnswerSubmit = async (entryAnswers: EntryAnswer[]) => {
         try {
-            const entryAnswer: EntryAnswer = entryAnswers[0];
-            switch (question?.type) {
-                case QuestionType.Single:
-                    addEntryAnswerSingle.mutateAsync({
-                        questionId: entryAnswer.questionId,
-                        answerOptionId: Number(entryAnswer.answerOptionId),
-                        entryId: entryAnswer.questionId
-                    });
-                    break;
-                case QuestionType.Multiple:
-                    console.log('Quiz> multiple hasnt been implemented yet')
-                    break;
-                case QuestionType.Text:
-                    console.log('Quiz> text hasnt been implemented yet')
-                    break;
-                default:
-                    throw new Error(`Unsupported question type: ${question?.type}`);
-            }
+            await addEntryAnswers.mutateAsync({ entryAnswers });
         } catch (error) {
             console.error("Quiz> Error on handleAnswerSubmit:", error);
         }

@@ -1,13 +1,14 @@
 import { useMutation } from "@tanstack/react-query"
 import EntryAnswerService from "../services/EntryAnswerService";
+import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
 
-export const useAddEntryAnswerSingle = () => {
+export const useAddEntryAnswers = () => {
     return useMutation({
-        mutationFn: ({ questionId, answerOptionId, entryId }:
-            { questionId: number, answerOptionId: number, entryId?: number }) =>
-            EntryAnswerService.addEntryAnswerSingle(questionId, answerOptionId, entryId),
+        mutationFn: ({ entryAnswers }:
+            { entryAnswers: EntryAnswer[] }) =>
+            EntryAnswerService.addEntryAnswers(entryAnswers),
         meta: {
-            errorMessage: 'Failed to create entry answer'
+            errorMessage: 'Failed to create entry answers'
         }
     });
 }
