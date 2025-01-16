@@ -8,7 +8,7 @@ export const useAddEntryAnswers = () => {
             { entryAnswers: EntryAnswer[] }) =>
             EntryAnswerService.addEntryAnswers(entryAnswers),
         meta: {
-            errorMessage: 'Failed to create entry answers'
+            errorMessage: 'Failed to add entry answers'
         }
     });
 }
