@@ -5,6 +5,7 @@ interface QuizContextProps {
     setCurrentQuestionId: (questionId: number | null) => void;
     currentEntryId: number | null;
     setCurrentEntryId: (entryId: number | null) => void;
+    loading: boolean;
 }
 
 const QuizContext = createContext<QuizContextProps | undefined>(undefined);
@@ -12,6 +13,7 @@ const QuizContext = createContext<QuizContextProps | undefined>(undefined);
 export const QuizProvider = ({ children }: { children: ReactNode }) => {
     const [currentQuestionId, setCurrentQuestionId] = useState<number | null>(null);
     const [currentEntryId, setCurrentEntryId] = useState<number | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const savedEntryId = localStorage.getItem('currentEntryId');
@@ -29,6 +31,8 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
         } else {
             setCurrentQuestionId(startingQuestionId);
         }
+
+        setLoading(false);
     }, []);
 
     useEffect(() => {
@@ -45,9 +49,10 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
 
     const value = useMemo(() => ({
         currentQuestionId, setCurrentQuestionId,
-        currentEntryId, setCurrentEntryId
+        currentEntryId, setCurrentEntryId,
+        loading
     }),
-        [currentQuestionId, currentEntryId]);
+        [currentQuestionId, currentEntryId, loading]);
     return (
         <QuizContext.Provider value={value}>
             {children}
