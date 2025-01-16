@@ -8,7 +8,8 @@ import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
 import { useQuiz } from "../../utils/QuizContext";
 
 const QuestionAnswers = ({ questionType, answerOptions, setEntryAnswers }:
-    { questionType: QuestionType, answerOptions: AnswerOption[], setEntryAnswers: React.Dispatch<React.SetStateAction<EntryAnswer[]>> }) => {
+    { questionType: QuestionType, answerOptions: AnswerOption[],
+        setEntryAnswers: React.Dispatch<React.SetStateAction<EntryAnswer[]>> }) => {
 
     const { currentQuestionId, currentEntryId } = useQuiz();
 
