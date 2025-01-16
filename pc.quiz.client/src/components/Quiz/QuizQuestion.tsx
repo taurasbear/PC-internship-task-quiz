@@ -1,9 +1,10 @@
-import { Alert, Box, Button, Typography } from "@mui/material";
+import { Alert, Box, Button, MobileStepper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Question } from "../../shared/types/entities/Question";
 import QuestionAnswers from "./QuestionAnswers";
 import { useState } from "react";
 import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
+import { KeyboardArrowRight, KeyboardArrowLeft } from '@mui/icons-material';
 
 const QuizQuestion = ({ question, onAnswerSubmit }: {
     question: Question,
@@ -12,15 +13,21 @@ const QuizQuestion = ({ question, onAnswerSubmit }: {
 
     const [entryAnswers, setEntryAnswers] = useState<EntryAnswer[]>([]);
     const [validationError, setValidationError] = useState(false);
+    const [activeStep, setActiveStep] = useState(0);
 
     const handleNextQuestion = () => {
-        if (entryAnswers.length === 0) {
-            setValidationError(true);
-        } else {
-            setValidationError(false);
-            onAnswerSubmit(entryAnswers);
-            setEntryAnswers([]);
-        }
+        setActiveStep((prev) => prev++)
+        // if (entryAnswers.length === 0) {
+        //     setValidationError(true);
+        // } else {
+        //     setValidationError(false);
+        //     onAnswerSubmit(entryAnswers);
+        //     setEntryAnswers([]);
+        // }
+    };
+
+    const handlePreviousQuestion = () => {
+        setActiveStep((prev) => prev--)
     };
 
     return (
@@ -30,6 +37,25 @@ const QuizQuestion = ({ question, onAnswerSubmit }: {
                     {question.title}
                 </Typography>
             </Grid>
+            <MobileStepper
+                variant="progress"
+                steps={6}
+                position="static"
+                activeStep={activeStep}
+                sx={{ maxWidth: 400, flexGrow: 1 }}
+                nextButton={
+                    <Button size="small" onClick={handleNextQuestion} disabled={activeStep === 5}>
+                        Next
+                        <KeyboardArrowRight />
+                    </Button>
+                }
+                backButton={
+                    <Button size="small" onClick={handlePreviousQuestion} disabled={activeStep === 0}>
+                        <KeyboardArrowLeft />
+                        Back
+                    </Button>
+                }
+            />
             <Grid size={3} paddingBottom={3}>
                 {validationError && <Alert severity='error'>Please give an answer.</Alert>}
             </Grid>
