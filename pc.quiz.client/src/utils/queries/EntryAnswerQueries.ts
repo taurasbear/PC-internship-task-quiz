@@ -11,4 +11,15 @@ export const useAddEntryAnswers = () => {
             errorMessage: 'Failed to add entry answers'
         }
     });
-}
+};
+
+export const useUpdateEntryAnswers = () => {
+    return useMutation({
+        mutationFn: ({ entryAnswers }:
+            { entryAnswers: EntryAnswer[] }) =>
+            EntryAnswerService.updateEntryAnswers(entryAnswers),
+        meta: {
+            errorMessage: 'Failed to update entry answers'
+        }
+    });
+};

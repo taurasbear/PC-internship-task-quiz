@@ -1,14 +1,18 @@
 import { Box, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { AnswerOption } from "../../../shared/types/entities/AnswerOption";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-
-const MultipleAnswers = ({ answerOptions, onChange }: {
+const MultipleAnswers = ({ answerOptions, initialValues, onChange }: {
     answerOptions: AnswerOption[],
+    initialValues?: number[],
     onChange: (values: number[]) => void,
 }) => {
-
-    const [selectedValues, setSelectedValues] = useState<number[]>([]);
+    const [selectedValues, setSelectedValues] = useState<number[]>(initialValues || []);
+    console.log('MultipleAnswers> initialValues: ', initialValues);
+    console.log('MultipleAnswers> selectedValues: ', selectedValues);
+    useEffect(() => {
+        setSelectedValues(initialValues || []);
+    }, [initialValues]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(event.target.value);

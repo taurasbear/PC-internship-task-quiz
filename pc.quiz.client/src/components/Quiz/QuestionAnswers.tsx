@@ -7,9 +7,13 @@ import TextAnswer from "./AnswerOptionTypes/TextAnswer";
 import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
 import { useQuiz } from "../../utils/QuizContext";
 
-const QuestionAnswers = ({ questionType, answerOptions, setEntryAnswers }:
-    { questionType: QuestionType, answerOptions: AnswerOption[],
-        setEntryAnswers: React.Dispatch<React.SetStateAction<EntryAnswer[]>> }) => {
+const QuestionAnswers = ({ questionType, answerOptions, entryAnswers, setEntryAnswers }:
+    {
+        questionType: QuestionType,
+        answerOptions: AnswerOption[],
+        setEntryAnswers: React.Dispatch<React.SetStateAction<EntryAnswer[]>>,
+        entryAnswers: EntryAnswer[]
+    }) => {
 
     const { currentQuestionId, currentEntryId } = useQuiz();
 
@@ -48,15 +52,26 @@ const QuestionAnswers = ({ questionType, answerOptions, setEntryAnswers }:
     switch (questionType) {
         case QuestionType.Single:
             return (
-                <SingleAnswers answerOptions={answerOptions} onChange={handleSingleAnswerChange} />
+                <SingleAnswers
+                    answerOptions={answerOptions}
+                    initialValue={entryAnswers[0]?.answerOptionId}
+                    onChange={handleSingleAnswerChange}
+                />
             );
         case QuestionType.Multiple:
             return (
-                <MultipleAnswers answerOptions={answerOptions} onChange={handleMultipleAnswerChange} />
+                <MultipleAnswers
+                    answerOptions={answerOptions}
+                    initialValues={entryAnswers.map(ea => ea.answerOptionId!)}
+                    onChange={handleMultipleAnswerChange}
+                />
             );
         case QuestionType.Text:
             return (
-                <TextAnswer onChange={handleTextAnswerChange} />
+                <TextAnswer
+                    initialValue={entryAnswers[0]?.normalizedValue}
+                    onChange={handleTextAnswerChange}
+                />
             );
         default:
             return (

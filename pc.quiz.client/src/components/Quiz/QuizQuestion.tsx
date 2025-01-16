@@ -6,12 +6,12 @@ import { useState } from "react";
 import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
 import { KeyboardArrowRight, KeyboardArrowLeft } from '@mui/icons-material';
 
-const QuizQuestion = ({ question, onAnswerSubmit }: {
+const QuizQuestion = ({ question, onNextQuestion, onPreviousQuestion }: {
     question: Question,
-    onAnswerSubmit: (entryAnswers: EntryAnswer[]) => void
+    onNextQuestion: (entryAnswers: EntryAnswer[]) => void,
+    onPreviousQuestion: (entryAnswers: EntryAnswer[]) => void
 }) => {
-
-    const [entryAnswers, setEntryAnswers] = useState<EntryAnswer[]>([]);
+    const [entryAnswers, setEntryAnswers] = useState<EntryAnswer[]>(question.entryAnswers || []);
     const [validationError, setValidationError] = useState(false);
     const [activeStep, setActiveStep] = useState(0);
 
@@ -64,6 +64,7 @@ const QuizQuestion = ({ question, onAnswerSubmit }: {
                     questionType={question.type}
                     answerOptions={question.answerOptions}
                     setEntryAnswers={setEntryAnswers}
+                    entryAnswers={entryAnswers}
                 />
             </Grid>
             <Grid size={12} alignItems={'flex-end'}>

@@ -1,8 +1,9 @@
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { AnswerOption } from "../../../shared/types/entities/AnswerOption";
 
-const SingleAnswers = ({ answerOptions, onChange }: {
+const SingleAnswers = ({ answerOptions, initialValue, onChange }: {
     answerOptions: AnswerOption[],
+    initialValue?: number,
     onChange: (value: number) => void
 }) => {
 
@@ -15,7 +16,7 @@ const SingleAnswers = ({ answerOptions, onChange }: {
         <Box>
             <FormControl>
                 <FormLabel id="single-question-type-label">Please select one:</FormLabel>
-                <RadioGroup onChange={handleChange}>
+                <RadioGroup onChange={handleChange} value={initialValue}>
                     {answerOptions?.map(answer =>
                         <FormControlLabel
                             key={answer.id}

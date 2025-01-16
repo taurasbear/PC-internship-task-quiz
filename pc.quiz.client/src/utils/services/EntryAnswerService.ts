@@ -6,6 +6,11 @@ class EntryAnswerService {
         const response = await axiosClient.post('/entryanswer', entryAnswers);
         return response.data.nextQuestionId;
     }
+
+    static async updateEntryAnswers(entryAnswers: EntryAnswer[]): Promise<number> {
+        const response = await axiosClient.put('/entryanswer', entryAnswers);
+        return response.data.nextQuestionId;
+    }
 }
 
 export default EntryAnswerService;
