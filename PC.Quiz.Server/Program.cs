@@ -1,12 +1,15 @@
 using PC.Quiz.Infrastructure.Data.DbContext;
 using PC.Quiz.Application;
 using PC.Quiz.Infrastructure;
+using PC.Quiz.Server.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(
+    options => options.Filters.Add<BadRequestExceptionFilter>()
+);
 builder.Services.ConfigureApplication();
 builder.Services.ConfigureInfrastructure();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

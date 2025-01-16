@@ -7,7 +7,8 @@
     {
         public CreateEntryMapper()
         {
-            this.CreateMap<Entry, CreateEntryResponse>();
+            this.CreateMap<Entry, CreateEntryResponse>()
+                .ForMember(dest => dest.EntryId, opt => opt.MapFrom(src => src.Id));
         }
     }
 }
