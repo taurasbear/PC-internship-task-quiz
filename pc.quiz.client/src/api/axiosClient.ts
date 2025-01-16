@@ -10,7 +10,7 @@ const axiosClient = axios.create({
 });
 
 interface ErrorResponse {
-    message: string;
+    error: string | string[];
 }
 
 axiosClient.interceptors.response.use(
@@ -19,7 +19,9 @@ axiosClient.interceptors.response.use(
     },
     async (error: AxiosError<ErrorResponse>): Promise<never> => {
         const apiError: ApiError = {
-            message: error.response?.data?.message ?? 'An unexpected error occured',
+            message: error.response?.data?.error 
+            ?? 'Something went wrong. Please try refreshing page.',
+            
             status: error.response?.status ?? 500,
         };
 

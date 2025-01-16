@@ -41,7 +41,7 @@ const queryClient = new QueryClient({
             const meta = mutation.meta as QueryMeta;
             const errorHeader = meta?.errorMessage ?? 'Mutation failed';
 
-            console.error(`${errorHeader}: ${error.message}`);
+            console.error(`${errorHeader}:`, error.message);
         },
     }),
 });

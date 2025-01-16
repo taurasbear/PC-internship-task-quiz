@@ -1,4 +1,4 @@
 export interface ApiError {
-    message: string,
+    message: string | string[],
     status: number
 }
