@@ -20,7 +20,7 @@ axiosClient.interceptors.response.use(
     async (error: AxiosError<ErrorResponse>): Promise<never> => {
         const apiError: ApiError = {
             message: error.response?.data?.error 
-            ?? 'Something went wrong. Please try refreshing page.',
+            ?? 'Something went wrong. Please try refreshing the page.',
             
             status: error.response?.status ?? 500,
         };
