@@ -1,5 +1,6 @@
 ﻿namespace PC.Quiz.Infrastructure.Data.Repositories
 {
+    using Microsoft.EntityFrameworkCore;
     using PC.Quiz.Application.Interfaces.Data.Repositories;
     using PC.Quiz.Domain.Entities;
     using PC.Quiz.Infrastructure.Data.DbContext;
@@ -19,7 +20,9 @@
 
         public async Task<Entry> GetEntryDetailsByIdAsync(long entryId, CancellationToken cancellationToken)
         {
-            return await this.quizContext.Entries.FindAsync(entryId, cancellationToken);
+            return await this.quizContext.Entries
+                .Include(entry => entry.EntryAnswers)
+                .FirstOrDefaultAsync(entry => entry.Id == entryId, cancellationToken);
         }
     }
 }
