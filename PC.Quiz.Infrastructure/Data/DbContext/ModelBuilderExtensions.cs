@@ -9,10 +9,6 @@
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Entry>().HasData(
-                new Entry { Id = 1, Email = "test@example.com", Status = EntryStatus.Ongoing, Score = 0 }
-            );
-
             modelBuilder.Entity<Question>().HasData(
                 new Question { Id = 1, Title = "What is the biggest type of bear?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Single },
                 new Question { Id = 2, Title = "Where do bears live?", Points = EntityConstants.PointsPerQuestion, Type = QuestionType.Multiple },
@@ -71,6 +67,20 @@
                 new AnswerOption { Id = 23, DisplayValue = "Berries", NormalizedValue = "BERRIES", Correct = true, QuestionId = 10 },
                 new AnswerOption { Id = 24, DisplayValue = "Human", NormalizedValue = "HUMAN", Correct = false, QuestionId = 10 },
                 new AnswerOption { Id = 25, DisplayValue = "Fish and chips", NormalizedValue = "FISH AND CHIPS", Correct = false, QuestionId = 10 }
+            );
+
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 1, Email = "test@example.com", Status = EntryStatus.Ongoing, Score = 200 }
+            );
+
+            modelBuilder.Entity<EntryAnswer>().HasData(
+                new EntryAnswer { Id = 1, QuestionId = 1, EntryId = 1, AnswerOptionId = 1 },
+
+                new EntryAnswer { Id = 2, QuestionId = 2, EntryId = 1, AnswerOptionId = 1 },
+                new EntryAnswer { Id = 3, QuestionId = 2, EntryId = 1, AnswerOptionId = 4 },
+
+                new EntryAnswer { Id = 4, QuestionId = 3, EntryId = 1, NormalizedValue = "Wojtek" }
             );
         }
     }

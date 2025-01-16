@@ -6,5 +6,7 @@
     {
         //TODO: Add comment
         Task<EntryAnswer> AddEntryAnswerAsync(EntryAnswer entryAnswer, CancellationToken cancellationToken);
+
+        Task<EntryAnswer> GetEntryAnswerByIdAsync(long entryAnswerId, CancellationToken cancellationToken);
     }
 }

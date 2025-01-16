@@ -1,11 +1,11 @@
-﻿namespace PC.Quiz.Application.Features.EntryAnswerFeatures.AddEntryAnswers
+﻿namespace PC.Quiz.Application.Features.EntryAnswerFeatures.UpdateEntryAnswers
 {
     using FluentValidation;
     using PC.Quiz.Domain.Constants;
 
-    public sealed class AddEntryAnswersValidator : AbstractValidator<AddEntryAnswersRequest>
+    public class UpdateEntryAnswersValidator : AbstractValidator<UpdateEntryAnswersRequest>
     {
-        public AddEntryAnswersValidator()
+        public UpdateEntryAnswersValidator()
         {
             this.RuleFor(entryAnswers => entryAnswers.entryAnswers)
                 .NotEmpty()
@@ -24,10 +24,14 @@
         }
     }
 
-    public sealed class EntryAnswerRequestValidator : AbstractValidator<AddEntryAnswersRequest.AddEntryAnswerRequest>
+    public sealed class EntryAnswerRequestValidator : AbstractValidator<UpdateEntryAnswersRequest.UpdateEntryAnswerRequest>
     {
         public EntryAnswerRequestValidator()
         {
+            this.RuleFor(entryAnswer => entryAnswer.Id)
+                .GreaterThanOrEqualTo(ValidationConstants.MinId)
+                .WithMessage($"EntryAnswer Id must greater than or equal to {ValidationConstants.MinId}.");
+
             this.RuleFor(entryAnswer => entryAnswer.QuestionId)
                 .GreaterThanOrEqualTo(ValidationConstants.MinId)
                 .WithMessage($"QuestionId must greater than or equal to {ValidationConstants.MinId}.");

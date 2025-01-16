@@ -2,9 +2,9 @@
 {
     using MediatR;
 
-    public sealed record class AddEntryAnswersRequest(IList<AddEntryAnswersRequest.EntryAnswerRequest> entryAnswers) : IRequest<AddEntryAnswersResponse>
+    public sealed record class AddEntryAnswersRequest(IList<AddEntryAnswersRequest.AddEntryAnswerRequest> entryAnswers) : IRequest<AddEntryAnswersResponse>
     {
-        public sealed record class EntryAnswerRequest
+        public sealed record class AddEntryAnswerRequest
         {
             public long QuestionId { get; set; }
 

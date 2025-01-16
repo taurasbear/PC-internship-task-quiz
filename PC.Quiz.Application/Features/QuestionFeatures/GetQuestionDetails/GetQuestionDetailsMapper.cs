@@ -10,6 +10,7 @@
             this.CreateMap<Question, GetQuestionDetailsResponse>()
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.ToString()));
             this.CreateMap<AnswerOption, GetQuestionDetailsResponse.AnswerOptionResponse>();
+            this.CreateMap<EntryAnswer, GetQuestionDetailsResponse.EntryAnswerResponse>();
         }
     }
 }

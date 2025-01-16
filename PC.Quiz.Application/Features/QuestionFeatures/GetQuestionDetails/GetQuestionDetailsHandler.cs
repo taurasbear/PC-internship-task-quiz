@@ -10,7 +10,8 @@
 
         public override async Task<GetQuestionDetailsResponse> Handle(GetQuestionDetailsRequest request, CancellationToken cancellationToken)
         {
-            Question question = await this.unitOfWork.QuestionRepository.GetQuestionDetailsByIdAsync(request.questionId, cancellationToken);
+            Question question = await this.unitOfWork.QuestionRepository
+                .GetQuestionDetailsByIdAsync(request.questionId, cancellationToken);
 
             return this.mapper.Map<GetQuestionDetailsResponse>(question);
         }

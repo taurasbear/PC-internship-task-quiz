@@ -16,5 +16,10 @@
             var addedEntryAnswer = await this.quizContext.EntryAnswers.AddAsync(entryAnswer, cancellationToken);
             return addedEntryAnswer.Entity;
         }
+
+        public async Task<EntryAnswer> GetEntryAnswerByIdAsync(long entryAnswerId, CancellationToken cancellationToken)
+        {
+            return await this.quizContext.EntryAnswers.FindAsync(entryAnswerId, cancellationToken);
+        }
     }
 }

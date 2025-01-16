@@ -3,6 +3,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using PC.Quiz.Application.Features.EntryAnswerFeatures.AddEntryAnswers;
+    using PC.Quiz.Application.Features.EntryAnswerFeatures.UpdateEntryAnswers;
     using System.Threading;
 
     [Route("api/[controller]")]
@@ -17,11 +18,20 @@
         }
 
         [HttpPost]
-        public async Task<ActionResult<AddEntryAnswersResponse>> AddEntryAnswerSingle(
-            [FromBody] IList<AddEntryAnswersRequest.EntryAnswerRequest> entryAnswers,
+        public async Task<ActionResult<AddEntryAnswersResponse>> AddEntryAnswers(
+            [FromBody] IList<AddEntryAnswersRequest.AddEntryAnswerRequest> entryAnswers,
             CancellationToken cancellationToken)
         {
             var response = await this.mediator.Send(new AddEntryAnswersRequest(entryAnswers), cancellationToken);
+            return this.Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<UpdateEntryAnswersResponse>> UpdateEntryAnswers(
+            [FromBody] IList<UpdateEntryAnswersRequest.UpdateEntryAnswerRequest> entryAnswers,
+            CancellationToken cancellationToken)
+        {
+            var response = await this.mediator.Send(new UpdateEntryAnswersRequest(entryAnswers), cancellationToken);
             return this.Ok(response);
         }
     }
