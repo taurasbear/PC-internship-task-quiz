@@ -1,6 +1,5 @@
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { AnswerOption } from "../../../shared/types/entities/AnswerOption";
-import { useState } from "react";
 
 const SingleAnswers = ({ answerOptions, onChange }: {
     answerOptions: AnswerOption[],
