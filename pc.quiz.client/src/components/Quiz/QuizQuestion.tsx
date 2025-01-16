@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Alert, Box, Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Question } from "../../shared/types/entities/Question";
 import QuestionAnswers from "./QuestionAnswers";
@@ -11,9 +11,16 @@ const QuizQuestion = ({ question, onAnswerSubmit }: {
 }) => {
 
     const [entryAnswers, setEntryAnswers] = useState<EntryAnswer[]>([]);
+    const [validationError, setValidationError] = useState(false);
 
     const handleNextQuestion = () => {
-        onAnswerSubmit(entryAnswers);
+        if (entryAnswers.length === 0) {
+            setValidationError(true);
+        } else {
+            setValidationError(false);
+            onAnswerSubmit(entryAnswers);
+            setEntryAnswers([]);
+        }
     };
 
     return (
@@ -22,6 +29,9 @@ const QuizQuestion = ({ question, onAnswerSubmit }: {
                 <Typography variant='h2' align='center'>
                     {question.title}
                 </Typography>
+            </Grid>
+            <Grid size={3} paddingBottom={3}>
+                {validationError && <Alert severity='error'>Please give an answer.</Alert>}
             </Grid>
             <Grid size={12}>
                 <QuestionAnswers

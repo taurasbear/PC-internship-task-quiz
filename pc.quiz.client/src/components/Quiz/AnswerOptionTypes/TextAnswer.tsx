@@ -10,7 +10,7 @@ const TextAnswer = ({ onChange }: {
     }
 
     return (
-        <Box>
+        <Box sx={{ maxWidth: 330 }}>
             <TextField
                 onChange={handleChange}
                 required

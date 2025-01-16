@@ -10,14 +10,12 @@ import { useQuiz } from "../../utils/QuizContext";
 const QuestionAnswers = ({ questionType, answerOptions, setEntryAnswers }:
     { questionType: QuestionType, answerOptions: AnswerOption[], setEntryAnswers: React.Dispatch<React.SetStateAction<EntryAnswer[]>> }) => {
 
-    //TODO: get entry id too
-    const { currentQuestionId } = useQuiz();
-    const currentEntryId = 1; // will be in context.
+    const { currentQuestionId, currentEntryId } = useQuiz();
 
     const handleSingleAnswerChange = (value: number) => {
         const entryAnswer: EntryAnswer = {
             questionId: Number(currentQuestionId),
-            entryId: currentEntryId,
+            entryId: currentEntryId!,
             answerOptionId: Number(value),
         }
 
@@ -27,7 +25,7 @@ const QuestionAnswers = ({ questionType, answerOptions, setEntryAnswers }:
     const handleMultipleAnswerChange = (values: number[]) => {
         const entryAnswers: EntryAnswer[] = values.map(v => ({
             questionId: Number(currentQuestionId),
-            entryId: currentEntryId,
+            entryId: currentEntryId!,
             answerOptionId: Number(v)
         }));
 
@@ -38,7 +36,7 @@ const QuestionAnswers = ({ questionType, answerOptions, setEntryAnswers }:
         if (value.trim() !== "") {
             const entryAnswer: EntryAnswer = {
                 questionId: Number(currentQuestionId),
-                entryId: currentEntryId,
+                entryId: currentEntryId!,
                 normalizedValue: value.toUpperCase()
             }
 
