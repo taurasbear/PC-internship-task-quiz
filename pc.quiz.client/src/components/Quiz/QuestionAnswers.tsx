@@ -33,7 +33,6 @@ const QuestionAnswers = ({ questionType, answerOptions, entryAnswers, setEntryAn
             entryId: currentEntryId!,
             answerOptionId: Number(v)
         }));
-
         setEntryAnswers(entryAnswers);
     }
 
@@ -44,8 +43,9 @@ const QuestionAnswers = ({ questionType, answerOptions, entryAnswers, setEntryAn
                 entryId: currentEntryId!,
                 normalizedValue: value.toUpperCase()
             }
-
             setEntryAnswers([entryAnswer]);
+        } else {
+            setEntryAnswers([]);
         }
     }
 

@@ -1,6 +1,6 @@
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { AnswerOption } from "../../../shared/types/entities/AnswerOption";
-import { useState } from "react";
+import useInitialValue from "../../../shared/hooks/useInitialValue";
 
 const SingleAnswers = ({ answerOptions, initialValue, onChange }: {
     answerOptions: AnswerOption[],
@@ -8,7 +8,7 @@ const SingleAnswers = ({ answerOptions, initialValue, onChange }: {
     onChange: (value: number) => void
 }) => {
 
-    const [selectedValue, setSelectedValue] = useState<number | ''>(initialValue ?? '');
+    const [selectedValue, setSelectedValue] = useInitialValue<number | ''>(initialValue ?? '');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;

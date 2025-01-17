@@ -1,42 +1,59 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useQuestion } from '../utils/queries/QuestionQueries';
+import { useQuestion, useQuestionCount } from '../utils/queries/QuestionQueries';
 import { useQuiz } from '../utils/QuizContext';
 import QuizQuestion from '../components/Quiz/QuizQuestion';
 import { EntryAnswer } from '../shared/types/entities/EntryAnswer';
-import { useAddEntryAnswers, useDeleteEntryAnswers, useUpdateEntryAnswers } from '../utils/queries/EntryAnswerQueries';
+import { useAddEntryAnswers, useDeleteEntryAnswers } from '../utils/queries/EntryAnswerQueries';
+import { useQueryClient } from '@tanstack/react-query';
+import QuestionService from '../utils/services/QuestionService';
 
 const Quiz = () => {
     const { currentQuestionId, setCurrentQuestionId, currentEntryId } = useQuiz();
     const { data: currentQuestion, isLoading, error } = useQuestion(currentQuestionId, currentEntryId);
+    const { data: questionCount } = useQuestionCount();
     const addEntryAnswers = useAddEntryAnswers();
-    //const updateEntryAnswers = useUpdateEntryAnswers();
     const deleteEntryAnswers = useDeleteEntryAnswers();
-
-    console.log("Quiz> question: ", currentQuestion);
+    const queryClient = useQueryClient();
 
     const handleNextQuestion = async (entryAnswers: EntryAnswer[]) => {
         const nextQuestionId = await saveEntryAnswers(entryAnswers);
-        // invalidate nextQuestionId key
+        queryClient.invalidateQueries({ queryKey: ['question', nextQuestionId] });
         setCurrentQuestionId(nextQuestionId);
     }
 
-    const handlePreviousQuestion = async () => {
-        // invalidate previousQuestionId query key
+    const handlePreviousQuestion = async (entryAnswers: EntryAnswer[]) => {
+        if (entryAnswers.length !== 0) {
+            await saveEntryAnswers(entryAnswers);
+        } else {
+            await deleteCurrentEntryAnswers();
+        }
+
+        const previousQuestionId = await queryClient.fetchQuery({
+            queryKey: ['previousQuestion', currentQuestionId],
+            queryFn: () => QuestionService.getPreviousQuestionId(Number(currentQuestionId))
+        });
+
+        queryClient.invalidateQueries({ queryKey: ['question', previousQuestionId] });
+        setCurrentQuestionId(previousQuestionId);
     }
 
     const saveEntryAnswers = async (entryAnswers: EntryAnswer[]) => {
         if (currentQuestion?.entryAnswers.length !== 0) {
-            const entryAnswerIds = currentQuestion!.entryAnswers.map(ea => Number(ea.id));
-            await deleteEntryAnswers.mutateAsync({ entryAnswerIds });
+            deleteCurrentEntryAnswers();
         }
 
         const nextQuestionId = await addEntryAnswers.mutateAsync({ entryAnswers });
         return nextQuestionId;
     }
 
+    const deleteCurrentEntryAnswers = async () => {
+        const entryAnswerIds = currentQuestion!.entryAnswers.map(ea => Number(ea.id));
+        await deleteEntryAnswers.mutateAsync({ entryAnswerIds });
+    }
+
     return (
-        <Box sx={{ maxWidth: 1000, margin: '0 auto', flexDirection: 'column', justifyContent: 'center' }}>
+        <Box sx={{ maxWidth: 1100, margin: '0 auto', flexDirection: 'column', justifyContent: 'center' }}>
             {isLoading && <Typography variant='h3' gutterBottom align='center'>
                 Loading...
             </Typography>}
@@ -47,6 +64,7 @@ const Quiz = () => {
 
             {currentQuestion && <QuizQuestion
                 question={currentQuestion}
+                questionCount={Number(questionCount)}
                 onNextQuestion={handleNextQuestion}
                 onPreviousQuestion={handlePreviousQuestion}
             />}

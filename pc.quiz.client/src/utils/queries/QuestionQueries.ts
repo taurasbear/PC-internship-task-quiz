@@ -23,3 +23,13 @@ export const useQuestion = (questionId: number | null, entryId: number | null): 
         },
     });
 };
+
+export const useQuestionCount = (): UseQueryResult<number, ApiError> => {
+    return useQuery({
+        queryKey: ['questionCount'],
+        queryFn: () => QuestionService.getQuestionCount(),
+        meta: {
+            errorMessage: 'Failed to query question count'
+        },
+    });
+};

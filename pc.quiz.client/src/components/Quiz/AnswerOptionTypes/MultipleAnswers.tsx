@@ -1,29 +1,25 @@
 import { Box, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { AnswerOption } from "../../../shared/types/entities/AnswerOption";
-import { useEffect, useState } from "react";
+import useInitialValue from "../../../shared/hooks/useInitialValue";
 
 const MultipleAnswers = ({ answerOptions, initialValues, onChange }: {
     answerOptions: AnswerOption[],
     initialValues?: number[],
     onChange: (values: number[]) => void,
 }) => {
-    const [selectedValues, setSelectedValues] = useState<number[]>(initialValues || []);
-    console.log('MultipleAnswers> initialValues: ', initialValues);
-    console.log('MultipleAnswers> selectedValues: ', selectedValues);
-    console.log('MultipleAnswers> answerOptions: ', answerOptions);
-    // useEffect(() => {
-    //     setSelectedValues(initialValues || []);
-    // }, [initialValues]);
+    const [selectedValues, setSelectedValues] = useInitialValue<number[]>(initialValues || []);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(event.target.value);
         const isChecked = event.target.checked;
 
-        setSelectedValues((prev: number[]) =>
-            isChecked ? [...prev, value] : prev.filter((v: number) => v !== value)
-        )
+        const newSelectedValues = isChecked
+            ? [...selectedValues, value]
+            : selectedValues.filter((v: number) => v !== value);
 
-        onChange(selectedValues);
+        setSelectedValues(newSelectedValues);
+
+        onChange(newSelectedValues);
     }
 
     return (

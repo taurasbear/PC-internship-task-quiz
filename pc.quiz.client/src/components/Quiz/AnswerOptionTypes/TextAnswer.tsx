@@ -1,31 +1,28 @@
 import { Box, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import useInitialValue from "../../../shared/hooks/useInitialValue";
 
 const TextAnswer = ({ initialValue, onChange }: {
     initialValue?: string,
     onChange: (value: string) => void
 }) => {
 
-    const [value, setValue] = useState(initialValue ?? '')
-
-    // useEffect(() => {
-    //     setValue(initialValue || '');
-    // }, [initialValue]);
+    const [typedValue, setTypedValue] = useInitialValue(initialValue ?? '')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        setValue(value);
+        setTypedValue(value);
         onChange(value);
     }
 
     return (
-        <Box sx={{ maxWidth: 330 }}>
+        <Box sx={{ width: 240 }}>
             <TextField
                 onChange={handleChange}
-                value={value}
+                value={typedValue}
                 required
                 id="text-question-type-field"
                 label="Please type your answer"
+                fullWidth
             />
         </Box>
     );

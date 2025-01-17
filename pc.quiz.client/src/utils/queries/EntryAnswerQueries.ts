@@ -13,17 +13,6 @@ export const useAddEntryAnswers = () => {
     });
 };
 
-export const useUpdateEntryAnswers = () => {
-    return useMutation({
-        mutationFn: ({ entryAnswers }:
-            { entryAnswers: EntryAnswer[] }) =>
-            EntryAnswerService.updateEntryAnswers(entryAnswers),
-        meta: {
-            errorMessage: 'Failed to update entry answers'
-        }
-    });
-};
-
 export const useDeleteEntryAnswers = () => {
     return useMutation({
         mutationFn: ({ entryAnswerIds }:
