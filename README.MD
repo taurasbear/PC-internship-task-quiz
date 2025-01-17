@@ -9,7 +9,7 @@ This project is built with React (TypeScript) and ASP.NET Core with an In-memory
 #### Visual Studio 2022
 1. Open solution file
 2. Start project[^1]
-3. Web app should launch in browser
+3. Web app should launch in browser[^2]
 
 #### VS Code (Frontend project only)
 1. Go to 'pc.quiz.client' in terminal
@@ -20,7 +20,6 @@ npm run dev
 ```
 
 ### Backend Key Points
-
 - Clean/Onion architecture implementation
 - Using CQRS and Mediator design patterns
 - Exception Filters
@@ -28,14 +27,22 @@ npm run dev
 ### Frontend Key Points
 - TanStack + Axios layers in frontend
 - Material UI[^3]
+- Vite
 
-### Improvements
+### Needed improvements
 - Exception handling middleware
-- Code should be written more equally
+- Code style consistency
 - Better React context management
+- Unit or other tests
+- Query key storage
+- Environment variable usage
 
 ### Example screenshots
+![Example of test question](quiz-example-1.png)
 
+![Example of test validation](quiz-example-2.png)
+
+![Example of start menu](quiz-example-3.png)
 
 ### Additional Information
 
