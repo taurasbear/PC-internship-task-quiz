@@ -7,6 +7,10 @@ class EntryService {
         const response = await axiosClient.post(`/entry/?${params}`)
         return response.data.entryId;
     }
+
+    static async finishEntry(entryId: number): Promise<void> {
+        await axiosClient.put(`/entry/finish/${entryId}`);
+    }
 }
 
 export default EntryService;

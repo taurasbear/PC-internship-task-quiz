@@ -7,6 +7,8 @@ import { EntryAnswer } from '../shared/types/entities/EntryAnswer';
 import { useAddEntryAnswers, useDeleteEntryAnswers } from '../utils/queries/EntryAnswerQueries';
 import { useQueryClient } from '@tanstack/react-query';
 import QuestionService from '../utils/services/QuestionService';
+import { useFinishEntry } from '../utils/queries/EntryQueries';
+import { useNavigate } from 'react-router-dom';
 
 const Quiz = () => {
     const { currentQuestionId, setCurrentQuestionId, currentEntryId } = useQuiz();
@@ -14,7 +16,10 @@ const Quiz = () => {
     const { data: questionCount } = useQuestionCount();
     const addEntryAnswers = useAddEntryAnswers();
     const deleteEntryAnswers = useDeleteEntryAnswers();
+    const finishEntry = useFinishEntry();
     const queryClient = useQueryClient();
+
+    const navigate = useNavigate();
 
     const handleNextQuestion = async (entryAnswers: EntryAnswer[]) => {
         const nextQuestionId = await saveEntryAnswers(entryAnswers);
@@ -36,6 +41,12 @@ const Quiz = () => {
 
         queryClient.invalidateQueries({ queryKey: ['question', previousQuestionId] });
         setCurrentQuestionId(previousQuestionId);
+    }
+
+    const handleFinish = async (entryAnswers: EntryAnswer[]) => {
+        await saveEntryAnswers(entryAnswers);
+        await finishEntry.mutateAsync({ entryId: currentEntryId! });
+        navigate('/leaderboard');
     }
 
     const saveEntryAnswers = async (entryAnswers: EntryAnswer[]) => {
@@ -67,6 +78,7 @@ const Quiz = () => {
                 questionCount={Number(questionCount)}
                 onNextQuestion={handleNextQuestion}
                 onPreviousQuestion={handlePreviousQuestion}
+                onFinish={handleFinish}
             />}
 
         </Box>

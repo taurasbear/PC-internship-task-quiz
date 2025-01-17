@@ -8,11 +8,12 @@ import useInitialValue from "../../shared/hooks/useInitialValue";
 import NextButton from "./Buttons/NextButton";
 import PreviousButton from "./Buttons/PreviousButton";
 
-const QuizQuestion = ({ question, questionCount, onNextQuestion, onPreviousQuestion }: {
+const QuizQuestion = ({ question, questionCount, onNextQuestion, onPreviousQuestion, onFinish }: {
     question: Question,
     questionCount: number,
     onNextQuestion: (entryAnswers: EntryAnswer[]) => Promise<void>,
     onPreviousQuestion: (entryAnswers: EntryAnswer[]) => Promise<void>
+    onFinish: (entryAnswers: EntryAnswer[]) => Promise<void>
 }) => {
     const [entryAnswers, setEntryAnswers] = useInitialValue<EntryAnswer[]>(question.entryAnswers || []);
     const [validationError, setValidationError] = useState(false);
@@ -34,6 +35,9 @@ const QuizQuestion = ({ question, questionCount, onNextQuestion, onPreviousQuest
     const handleFinish = async () => {
         if (entryAnswers.length === 0) {
             setValidationError(true);
+        } else {
+            setValidationError(false);
+            await onFinish(entryAnswers);
         }
     }
 

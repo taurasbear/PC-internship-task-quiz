@@ -10,4 +10,15 @@ export const useCreateEntry = () => {
             errorMessage: 'Failed to create entry'
         }
     });
+};
+
+export const useFinishEntry = () => {
+    return useMutation({
+        mutationFn: ({ entryId }:
+            { entryId: number }) =>
+            EntryService.finishEntry(entryId),
+        meta: {
+            errorMessage: 'Failed to finsh entry'
+        }
+    });
 }
