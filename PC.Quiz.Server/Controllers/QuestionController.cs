@@ -3,6 +3,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using PC.Quiz.Application.Features.QuestionFeatures.GetPreviousQuestionId;
+    using PC.Quiz.Application.Features.QuestionFeatures.GetQuestionCount;
     using PC.Quiz.Application.Features.QuestionFeatures.GetQuestionDetails;
 
     [Route("api/[controller]")]
@@ -32,6 +33,13 @@
             CancellationToken cancellationToken)
         {
             var response = await this.mediator.Send(new GetPreviousQuestionIdRequest(previousQuestionId), cancellationToken);
+            return this.Ok(response);
+        }
+
+        [HttpGet("count")]
+        public async Task<ActionResult<GetQuestionCountResponse>> GetQuestionCount(CancellationToken cancellationToken)
+        {
+            var response = await this.mediator.Send(new GetQuestionCountRequest(), cancellationToken);
             return this.Ok(response);
         }
     }

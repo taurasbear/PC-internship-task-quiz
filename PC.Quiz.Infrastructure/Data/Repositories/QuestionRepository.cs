@@ -17,6 +17,11 @@
             return await this.quizContext.Questions.FindAsync(questionId, cancellationToken);
         }
 
+        public async Task<int> GetQuestionCountAsync(CancellationToken cancellationToken)
+        {
+            return await this.quizContext.Questions.CountAsync(cancellationToken);
+        }
+
         public async Task<Question> GetQuestionDetailsByIdAsync(long questionId, CancellationToken cancellationToken)
         {
             return await this.quizContext.Questions

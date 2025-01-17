@@ -23,21 +23,22 @@
             Entry entry = await this.unitOfWork.EntryRepository.GetEntryDetailsByIdAsync(firstEntryAnswer.EntryId, cancellationToken);
             Question question = await this.unitOfWork.QuestionRepository.GetQuestionDetailsByIdAsync(firstEntryAnswer.QuestionId, cancellationToken);
 
-            QuestionType questionType = question.Type;
-            switch (questionType)
-            {
-                case QuestionType.Single:
-                    entry.Score += QuestionPointsCalculator.CalculateSingleType(question, firstEntryAnswer);
-                    break;
-                case QuestionType.Multiple:
-                    entry.Score += QuestionPointsCalculator.CalculateMultipleType(question, entryAnswerList);
-                    break;
-                case QuestionType.Text:
-                    entry.Score += QuestionPointsCalculator.CalculateTextType(question, firstEntryAnswer);
-                    break;
-                default:
-                    throw new BadRequestException("QuestionType does not exist.");
-            }
+            // Probably should calculate score at the end
+            //QuestionType questionType = question.Type;
+            //switch (questionType)
+            //{
+            //    case QuestionType.Single:
+            //        entry.Score += QuestionPointsCalculator.CalculateSingleType(question, firstEntryAnswer);
+            //        break;
+            //    case QuestionType.Multiple:
+            //        entry.Score += QuestionPointsCalculator.CalculateMultipleType(question, entryAnswerList);
+            //        break;
+            //    case QuestionType.Text:
+            //        entry.Score += QuestionPointsCalculator.CalculateTextType(question, firstEntryAnswer);
+            //        break;
+            //    default:
+            //        throw new BadRequestException("QuestionType does not exist.");
+            //}
 
             foreach (EntryAnswer entryAnswer in entryAnswerList)
             {

@@ -13,5 +13,7 @@
         Task<Question> GetQuestionDetailsByIdAsync(long questionId, CancellationToken cancellationToken);
 
         Task<Question> GetQuestionByIdAsync(long questionId, CancellationToken cancellationToken);
+
+        Task<int> GetQuestionCountAsync(CancellationToken cancellationToken);
     }
 }
