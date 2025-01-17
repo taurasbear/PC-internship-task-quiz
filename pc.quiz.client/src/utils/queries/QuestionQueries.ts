@@ -13,11 +13,11 @@ export const useQuestions = (): UseQueryResult<Question[], ApiError> => {
     });
 };
 
-export const useQuestion = (id: number | null): UseQueryResult<Question, ApiError> => {
+export const useQuestion = (questionId: number | null, entryId: number | null): UseQueryResult<Question, ApiError> => {
     return useQuery({
-        queryKey: ['question', id],
-        queryFn: () => QuestionService.getQuestionDetails(Number(id)),
-        enabled: id !== null,
+        queryKey: ['question', questionId, entryId],
+        queryFn: () => QuestionService.getQuestionDetails(Number(questionId), Number(entryId)),
+        enabled: questionId !== null && entryId !== null,
         meta: {
             errorMessage: 'Failed to query question'
         },

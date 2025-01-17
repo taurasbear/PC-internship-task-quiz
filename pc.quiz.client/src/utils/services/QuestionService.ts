@@ -7,8 +7,11 @@ class QuestionService {
         return response.data;
     }
 
-    static async getQuestionDetails(id: number): Promise<Question[]> {
-        const response = await axiosClient.get(`/question/${id}`);
+    static async getQuestionDetails(questionId: number, entryId: number): Promise<Question[]> {
+        const params = new URLSearchParams();
+        params.append('questionId', questionId.toString());
+        params.append('entryId', entryId.toString());
+        const response = await axiosClient.get(`/question/?${params}`);
         return response.data;
     }
 }

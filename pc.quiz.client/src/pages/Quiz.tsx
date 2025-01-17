@@ -7,8 +7,8 @@ import { EntryAnswer } from '../shared/types/entities/EntryAnswer';
 import { useAddEntryAnswers, useUpdateEntryAnswers } from '../utils/queries/EntryAnswerQueries';
 
 const Quiz = () => {
-    const { currentQuestionId, setCurrentQuestionId } = useQuiz();
-    const { data: currentQuestion, isLoading, error } = useQuestion(currentQuestionId);
+    const { currentQuestionId, setCurrentQuestionId, currentEntryId } = useQuiz();
+    const { data: currentQuestion, isLoading, error } = useQuestion(currentQuestionId, currentEntryId);
     const addEntryAnswers = useAddEntryAnswers();
     const updateEntryAnswers = useUpdateEntryAnswers();
 
