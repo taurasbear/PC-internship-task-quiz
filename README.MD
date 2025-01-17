@@ -47,6 +47,7 @@ The user has to go through 10 questions and if they score high enough, they appe
 - Unit or other tests
 - Query key storage
 - Environment variable usage
+- Repository interface comments
 
 ### Screenshots of web app
 ![Example of test question](quiz-example-1.png)
