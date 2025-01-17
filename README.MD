@@ -2,7 +2,7 @@
 
 ## A simple quiz web app
 
-This project is built with React (TypeScript) and ASP.NET Core with an In-memory database.
+This project is built with React (TypeScript) and ASP.NET Core with an in-memory database.
 
 ### Instructions
 
@@ -19,6 +19,14 @@ This project is built with React (TypeScript) and ASP.NET Core with an In-memory
 npm run dev
 ```
 
+### About web app
+There are 3 question types:
+- Radio buttons
+- Checkboxes
+- Textboxes
+
+The user has to go through 10 questions and if they score high enough, they appear on the leaderboard among the top 10 highest scored entries.
+
 ### Backend Key Points
 - Clean/Onion architecture implementation
 - Using CQRS and Mediator design patterns
@@ -29,6 +37,9 @@ npm run dev
 - Material UI[^3]
 - Vite
 
+### Database schema
+![alt text](database-schema.png)
+
 ### Needed improvements
 - Exception handling middleware
 - Code style consistency
@@ -37,7 +48,7 @@ npm run dev
 - Query key storage
 - Environment variable usage
 
-### Example screenshots
+### Screenshots of web app
 ![Example of test question](quiz-example-1.png)
 
 ![Example of test validation](quiz-example-2.png)
