@@ -2,5 +2,5 @@
 {
     using MediatR;
 
-    public sealed record class GetQuestionDetailsRequest(long questionId) : IRequest<GetQuestionDetailsResponse>;
+    public sealed record class GetQuestionDetailsRequest(long questionId, long entryId) : IRequest<GetQuestionDetailsResponse>;
 }

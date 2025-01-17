@@ -15,10 +15,13 @@
             this.mediator = mediator;
         }
 
-        [HttpGet("{questionId:long}")]
-        public async Task<ActionResult<GetQuestionDetailsResponse>> GetAllQuestionDetails(long questionId, CancellationToken cancellationToken)
+        [HttpGet]
+        public async Task<ActionResult<GetQuestionDetailsResponse>> GetAllQuestionDetails(
+            [FromQuery] long questionId,
+            [FromQuery] long entryId,
+            CancellationToken cancellationToken)
         {
-            var response = await this.mediator.Send(new GetQuestionDetailsRequest(questionId), cancellationToken);
+            var response = await this.mediator.Send(new GetQuestionDetailsRequest(questionId, entryId), cancellationToken);
             return this.Ok(response);
         }
     }
