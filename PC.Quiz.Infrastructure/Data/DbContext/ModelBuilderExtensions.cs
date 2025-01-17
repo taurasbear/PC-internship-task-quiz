@@ -71,7 +71,7 @@
 
 
             modelBuilder.Entity<Entry>().HasData(
-                 new Entry { Id = 1, Email = "test@example.com", Status = EntryStatus.Ongoing, Score = 200 }
+                 new Entry { Id = 1, Email = "test@example.com", Status = EntryStatus.Ongoing, FinishedDateTime = DateTime.Now, Score = 200 }
             );
 
             modelBuilder.Entity<EntryAnswer>().HasData(
@@ -81,6 +81,46 @@
                 new EntryAnswer { Id = 3, QuestionId = 2, EntryId = 1, AnswerOptionId = 8 },
 
                 new EntryAnswer { Id = 4, QuestionId = 3, EntryId = 1, NormalizedValue = "Wojtek" }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 2, Email = "bear@lover.com", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 200 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 3, Email = "ilove@bears.lt", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 400 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 4, Email = "bears@awesome.com", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 350 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 5, Email = "wow@bear.com", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 500 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 6, Email = "bear@enjoyer.uk", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 50 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 7, Email = "bear@friend.com", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 300 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 8, Email = "forest@inq.com", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 200 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 9, Email = "honey@sourcer.en", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 750 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 10, Email = "hehe@bears.com", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 900 }
+            );
+
+            modelBuilder.Entity<Entry>().HasData(
+                 new Entry { Id = 11, Email = "yay@bears.en", Status = EntryStatus.Finished, FinishedDateTime = DateTime.Now, Score = 320 }
             );
         }
     }

@@ -4,6 +4,7 @@
     using PC.Quiz.Application.Interfaces.Data.Repositories;
     using PC.Quiz.Domain.Entities;
     using PC.Quiz.Infrastructure.Data.DbContext;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -28,6 +29,15 @@
             return await this.quizContext.Entries
                 .Include(entry => entry.EntryAnswers)
                 .FirstOrDefaultAsync(entry => entry.Id == entryId, cancellationToken);
+        }
+
+        public async Task<IList<Entry>> GetTopEntriesAsync(int topCount, CancellationToken cancellationToken)
+        {
+            return await this.quizContext.Entries
+                .OrderByDescending(entry => entry.Score)
+                .Where(entry => entry.Status == Domain.Enums.EntryStatus.Finished)
+                .Take(topCount)
+                .ToListAsync(cancellationToken);
         }
     }
 }

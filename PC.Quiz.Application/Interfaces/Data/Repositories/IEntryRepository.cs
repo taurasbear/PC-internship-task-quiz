@@ -8,6 +8,8 @@
 
         Task<Entry> GetEntryByIdAsync(long entryId, CancellationToken cancellationToken);
 
+        Task<IList<Entry>> GetTopEntriesAsync(int topCount, CancellationToken cancellationToken);
+
         Task<Entry> AddEntryAsync(Entry entry, CancellationToken cancellationToken);
     }
 }

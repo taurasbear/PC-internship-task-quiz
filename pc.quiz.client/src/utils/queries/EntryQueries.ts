@@ -1,5 +1,7 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQuery, UseQueryResult } from "@tanstack/react-query"
 import EntryService from "../services/EntryService"
+import { Entry } from "../../shared/types/entities/Entry";
+import { ApiError } from "../../shared/types/ApiError";
 
 export const useCreateEntry = () => {
     return useMutation({
@@ -22,3 +24,13 @@ export const useFinishEntry = () => {
         }
     });
 }
+
+export const useTopEntries = (): UseQueryResult<Entry[], ApiError> => {
+    return useQuery({
+        queryKey: ['topEntries'],
+        queryFn: () => EntryService.getTopEntries(),
+        meta: {
+            errorMessage: 'Failed to query top entries'
+        },
+    });
+};

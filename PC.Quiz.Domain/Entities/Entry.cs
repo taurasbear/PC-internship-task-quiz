@@ -13,7 +13,7 @@
 
         public string Email { get; set; } = string.Empty;
 
-        public DateTime? DateTime { get; set; }
+        public DateTime? FinishedDateTime { get; set; }
 
         public ICollection<EntryAnswer> EntryAnswers { get; set; } = new Collection<EntryAnswer>();
     }

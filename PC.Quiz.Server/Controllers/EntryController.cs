@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using PC.Quiz.Application.Features.EntryFeatures.CreateEntry;
     using PC.Quiz.Application.Features.EntryFeatures.FinishEntry;
+    using PC.Quiz.Application.Features.EntryFeatures.GetTopEntries;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -14,6 +15,13 @@
         public EntryController(IMediator mediator)
         {
             this.mediator = mediator;
+        }
+
+        [HttpGet("top")]
+        public async Task<ActionResult<GetTopEntriesResponse>> GetTopEntries(CancellationToken cancellationToken)
+        {
+            var response = await this.mediator.Send(new GetTopEntriesRequest(), cancellationToken);
+            return this.Ok(response);
         }
 
         [HttpPut("finish/{entryId}")]

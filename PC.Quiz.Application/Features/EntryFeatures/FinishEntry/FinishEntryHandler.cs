@@ -27,6 +27,7 @@
             }
 
             trackedEntry.Status = EntryStatus.Finished;
+            trackedEntry.FinishedDateTime = DateTime.Now;
 
             await this.unitOfWork.SaveAsync(cancellationToken);
         }
