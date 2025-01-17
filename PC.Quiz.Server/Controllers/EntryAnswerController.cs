@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using PC.Quiz.Application.Features.EntryAnswerFeatures.AddEntryAnswers;
     using PC.Quiz.Application.Features.EntryAnswerFeatures.DeleteEntryAnswers;
-    using PC.Quiz.Application.Features.EntryAnswerFeatures.UpdateEntryAnswers;
     using System.Threading;
 
     [Route("api/[controller]")]
@@ -24,15 +23,6 @@
             CancellationToken cancellationToken)
         {
             var response = await this.mediator.Send(new AddEntryAnswersRequest(entryAnswers), cancellationToken);
-            return this.Ok(response);
-        }
-
-        [HttpPut]
-        public async Task<ActionResult<UpdateEntryAnswersResponse>> UpdateEntryAnswers(
-            [FromBody] IList<UpdateEntryAnswersRequest.UpdateEntryAnswerRequest> entryAnswers,
-            CancellationToken cancellationToken)
-        {
-            var response = await this.mediator.Send(new UpdateEntryAnswersRequest(entryAnswers), cancellationToken);
             return this.Ok(response);
         }
 

@@ -6,7 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <SpaRoot>..\pc.quiz.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-    <SpaProxyServerUrl>https://localhost:62212</SpaProxyServerUrl>
+    <SpaProxyServerUrl>https:
+	
+localhost:62212</SpaProxyServerUrl>
   </PropertyGroup>
 
   <ItemGroup>
