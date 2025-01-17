@@ -10,9 +10,10 @@ const MultipleAnswers = ({ answerOptions, initialValues, onChange }: {
     const [selectedValues, setSelectedValues] = useState<number[]>(initialValues || []);
     console.log('MultipleAnswers> initialValues: ', initialValues);
     console.log('MultipleAnswers> selectedValues: ', selectedValues);
-    useEffect(() => {
-        setSelectedValues(initialValues || []);
-    }, [initialValues]);
+    console.log('MultipleAnswers> answerOptions: ', answerOptions);
+    // useEffect(() => {
+    //     setSelectedValues(initialValues || []);
+    // }, [initialValues]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(event.target.value);

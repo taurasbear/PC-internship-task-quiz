@@ -8,9 +8,9 @@ const TextAnswer = ({ initialValue, onChange }: {
 
     const [value, setValue] = useState(initialValue ?? '')
 
-    useEffect(() => {
-        setValue(initialValue || '');
-    }, [initialValue]);
+    // useEffect(() => {
+    //     setValue(initialValue || '');
+    // }, [initialValue]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;

@@ -23,7 +23,8 @@ const Quiz = () => {
                 setCurrentQuestionId(nextQuestionId);
             } else {
                 // if it has update
-                const nextQuestionId = await updateEntryAnswers.mutateAsync({ entryAnswers });
+                //const nextQuestionId = await updateEntryAnswers.mutateAsync({ entryAnswers });
+                // delete and add
                 setCurrentQuestionId(nextQuestionId);
             }
         } catch (error) {

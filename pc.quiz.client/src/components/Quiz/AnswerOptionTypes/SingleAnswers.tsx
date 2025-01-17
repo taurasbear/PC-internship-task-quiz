@@ -7,8 +7,11 @@ const SingleAnswers = ({ answerOptions, initialValue, onChange }: {
     onChange: (value: number) => void
 }) => {
 
+    const [selectedValue, setSelectedValue] = useState<number | ''>(initialValue ?? '');
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
+        setSelectedValue(value);
         onChange(Number(value));
     }
 
@@ -16,7 +19,7 @@ const SingleAnswers = ({ answerOptions, initialValue, onChange }: {
         <Box>
             <FormControl>
                 <FormLabel id="single-question-type-label">Please select one:</FormLabel>
-                <RadioGroup onChange={handleChange} value={initialValue}>
+                <RadioGroup onChange={handleChange} value={selectedValue}>
                     {answerOptions?.map(answer =>
                         <FormControlLabel
                             key={answer.id}

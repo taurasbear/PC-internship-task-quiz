@@ -17,13 +17,13 @@ const QuizQuestion = ({ question, onNextQuestion, onPreviousQuestion }: {
 
     const handleNextQuestion = () => {
         setActiveStep((prev) => prev++)
-        // if (entryAnswers.length === 0) {
-        //     setValidationError(true);
-        // } else {
-        //     setValidationError(false);
-        //     onAnswerSubmit(entryAnswers);
-        //     setEntryAnswers([]);
-        // }
+        if (entryAnswers.length === 0) {
+            setValidationError(true);
+        } else {
+            setValidationError(false);
+            onNextQuestion(entryAnswers);
+            //setEntryAnswers([]); don't need this since passing a new question will cause a re-render
+        }
     };
 
     const handlePreviousQuestion = () => {
@@ -63,8 +63,8 @@ const QuizQuestion = ({ question, onNextQuestion, onPreviousQuestion }: {
                 <QuestionAnswers
                     questionType={question.type}
                     answerOptions={question.answerOptions}
-                    setEntryAnswers={setEntryAnswers}
                     entryAnswers={entryAnswers}
+                    setEntryAnswers={setEntryAnswers}
                 />
             </Grid>
             <Grid size={12} alignItems={'flex-end'}>

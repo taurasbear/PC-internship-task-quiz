@@ -11,8 +11,8 @@ const QuestionAnswers = ({ questionType, answerOptions, entryAnswers, setEntryAn
     {
         questionType: QuestionType,
         answerOptions: AnswerOption[],
-        setEntryAnswers: React.Dispatch<React.SetStateAction<EntryAnswer[]>>,
-        entryAnswers: EntryAnswer[]
+        entryAnswers: EntryAnswer[],
+        setEntryAnswers: React.Dispatch<React.SetStateAction<EntryAnswer[]>>
     }) => {
 
     const { currentQuestionId, currentEntryId } = useQuiz();

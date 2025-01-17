@@ -77,8 +77,8 @@
             modelBuilder.Entity<EntryAnswer>().HasData(
                 new EntryAnswer { Id = 1, QuestionId = 1, EntryId = 1, AnswerOptionId = 1 },
 
-                new EntryAnswer { Id = 2, QuestionId = 2, EntryId = 1, AnswerOptionId = 1 },
-                new EntryAnswer { Id = 3, QuestionId = 2, EntryId = 1, AnswerOptionId = 4 },
+                new EntryAnswer { Id = 2, QuestionId = 2, EntryId = 1, AnswerOptionId = 5 },
+                new EntryAnswer { Id = 3, QuestionId = 2, EntryId = 1, AnswerOptionId = 8 },
 
                 new EntryAnswer { Id = 4, QuestionId = 3, EntryId = 1, NormalizedValue = "Wojtek" }
             );
