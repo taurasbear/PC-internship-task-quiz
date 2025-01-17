@@ -4,17 +4,14 @@ const theme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: '#f4e0c0',//'#6a8063',
+            main: '#f4e0c0',
         },
         secondary: {
             main: '#e9f108',
         },
-        // action: {
-        //     hover: '#6a8063',
-        // },
         background:
         {
-            default: '#121212',//'#22181C',
+            default: '#121212',
             paper: '#282828',
         },
     },
