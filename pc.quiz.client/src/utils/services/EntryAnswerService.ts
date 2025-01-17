@@ -11,6 +11,10 @@ class EntryAnswerService {
         const response = await axiosClient.put('/entryanswer', entryAnswers);
         return response.data.nextQuestionId;
     }
+
+    static async deleteEntryAnswers(entryAnswerIds: number[]) : Promise<void> {
+    await axiosClient.delete('/entryanswer', {data: entryAnswerIds});
+    }
 }
 
 export default EntryAnswerService;

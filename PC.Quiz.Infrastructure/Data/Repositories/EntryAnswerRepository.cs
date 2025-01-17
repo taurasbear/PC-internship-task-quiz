@@ -21,5 +21,10 @@
         {
             return await this.quizContext.EntryAnswers.FindAsync(entryAnswerId, cancellationToken);
         }
+
+        public void RemoveEntryAnswer(EntryAnswer entryAnswer)
+        {
+            this.quizContext.EntryAnswers.Remove(entryAnswer);
+        }
     }
 }

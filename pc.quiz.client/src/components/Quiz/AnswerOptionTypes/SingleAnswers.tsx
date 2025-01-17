@@ -1,5 +1,6 @@
 import { Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { AnswerOption } from "../../../shared/types/entities/AnswerOption";
+import { useState } from "react";
 
 const SingleAnswers = ({ answerOptions, initialValue, onChange }: {
     answerOptions: AnswerOption[],
@@ -11,7 +12,7 @@ const SingleAnswers = ({ answerOptions, initialValue, onChange }: {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        setSelectedValue(value);
+        setSelectedValue(Number(value));
         onChange(Number(value));
     }
 

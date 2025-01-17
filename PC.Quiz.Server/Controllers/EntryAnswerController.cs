@@ -3,6 +3,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using PC.Quiz.Application.Features.EntryAnswerFeatures.AddEntryAnswers;
+    using PC.Quiz.Application.Features.EntryAnswerFeatures.DeleteEntryAnswers;
     using PC.Quiz.Application.Features.EntryAnswerFeatures.UpdateEntryAnswers;
     using System.Threading;
 
@@ -33,6 +34,15 @@
         {
             var response = await this.mediator.Send(new UpdateEntryAnswersRequest(entryAnswers), cancellationToken);
             return this.Ok(response);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteEntryAnswers(
+            [FromBody] IList<long> entryAnswerIdList,
+            CancellationToken cancellationToken)
+        {
+            await this.mediator.Send(new DeleteEntryAnswersRequest(entryAnswerIdList), cancellationToken);
+            return this.Ok();
         }
     }
 }

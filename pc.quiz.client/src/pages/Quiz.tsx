@@ -4,29 +4,26 @@ import { useQuestion } from '../utils/queries/QuestionQueries';
 import { useQuiz } from '../utils/QuizContext';
 import QuizQuestion from '../components/Quiz/QuizQuestion';
 import { EntryAnswer } from '../shared/types/entities/EntryAnswer';
-import { useAddEntryAnswers, useUpdateEntryAnswers } from '../utils/queries/EntryAnswerQueries';
+import { useAddEntryAnswers, useDeleteEntryAnswers, useUpdateEntryAnswers } from '../utils/queries/EntryAnswerQueries';
 
 const Quiz = () => {
     const { currentQuestionId, setCurrentQuestionId, currentEntryId } = useQuiz();
     const { data: currentQuestion, isLoading, error } = useQuestion(currentQuestionId, currentEntryId);
     const addEntryAnswers = useAddEntryAnswers();
-    const updateEntryAnswers = useUpdateEntryAnswers();
+    //const updateEntryAnswers = useUpdateEntryAnswers();
+    const deleteEntryAnswers = useDeleteEntryAnswers();
 
     console.log("Quiz> question: ", currentQuestion);
 
     const handleNextQuestion = async (entryAnswers: EntryAnswer[]) => {
         try {
-            // check if it's been submitted before
-            if (currentQuestion?.entryAnswers.length === 0) {
-                // if not add
-                const nextQuestionId = await addEntryAnswers.mutateAsync({ entryAnswers });
-                setCurrentQuestionId(nextQuestionId);
-            } else {
-                // if it has update
-                //const nextQuestionId = await updateEntryAnswers.mutateAsync({ entryAnswers });
-                // delete and add
-                setCurrentQuestionId(nextQuestionId);
+            if (currentQuestion?.entryAnswers.length !== 0) {
+                const entryAnswerIds = currentQuestion!.entryAnswers.map(ea => Number(ea.id));
+                await deleteEntryAnswers.mutateAsync({ entryAnswerIds });
             }
+
+            const nextQuestionId = await addEntryAnswers.mutateAsync({ entryAnswers });
+            setCurrentQuestionId(nextQuestionId);
         } catch (error) {
             console.error("Quiz> Error on handleAnswerSubmit:", error);
         }

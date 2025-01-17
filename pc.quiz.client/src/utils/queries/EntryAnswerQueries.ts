@@ -23,3 +23,14 @@ export const useUpdateEntryAnswers = () => {
         }
     });
 };
+
+export const useDeleteEntryAnswers = () => {
+    return useMutation({
+        mutationFn: ({ entryAnswerIds }:
+            { entryAnswerIds: number[] }) =>
+            EntryAnswerService.deleteEntryAnswers(entryAnswerIds),
+        meta: {
+            errorMessage: 'Failed to delete entry answers'
+        }
+    });
+};
