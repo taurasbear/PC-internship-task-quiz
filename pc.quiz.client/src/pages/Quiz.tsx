@@ -16,21 +16,23 @@ const Quiz = () => {
     console.log("Quiz> question: ", currentQuestion);
 
     const handleNextQuestion = async (entryAnswers: EntryAnswer[]) => {
-        try {
-            if (currentQuestion?.entryAnswers.length !== 0) {
-                const entryAnswerIds = currentQuestion!.entryAnswers.map(ea => Number(ea.id));
-                await deleteEntryAnswers.mutateAsync({ entryAnswerIds });
-            }
-
-            const nextQuestionId = await addEntryAnswers.mutateAsync({ entryAnswers });
-            setCurrentQuestionId(nextQuestionId);
-        } catch (error) {
-            console.error("Quiz> Error on handleAnswerSubmit:", error);
-        }
+        const nextQuestionId = await saveEntryAnswers(entryAnswers);
+        // invalidate nextQuestionId key
+        setCurrentQuestionId(nextQuestionId);
     }
 
     const handlePreviousQuestion = async () => {
-        // invalidate question query key
+        // invalidate previousQuestionId query key
+    }
+
+    const saveEntryAnswers = async (entryAnswers: EntryAnswer[]) => {
+        if (currentQuestion?.entryAnswers.length !== 0) {
+            const entryAnswerIds = currentQuestion!.entryAnswers.map(ea => Number(ea.id));
+            await deleteEntryAnswers.mutateAsync({ entryAnswerIds });
+        }
+
+        const nextQuestionId = await addEntryAnswers.mutateAsync({ entryAnswers });
+        return nextQuestionId;
     }
 
     return (
