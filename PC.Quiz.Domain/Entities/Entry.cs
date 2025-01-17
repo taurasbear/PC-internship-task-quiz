@@ -6,6 +6,7 @@
     public class Entry
     {
         public long Id { get; set; }
+
         public EntryStatus Status { get; set; }
 
         public int Score { get; set; }

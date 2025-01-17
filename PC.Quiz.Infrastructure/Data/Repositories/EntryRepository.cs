@@ -18,6 +18,11 @@
             return trackedEntry.Entity;
         }
 
+        public async Task<Entry> GetEntryByIdAsync(long entryId, CancellationToken cancellationToken)
+        {
+            return await this.quizContext.Entries.FindAsync(entryId, cancellationToken);
+        }
+
         public async Task<Entry> GetEntryDetailsByIdAsync(long entryId, CancellationToken cancellationToken)
         {
             return await this.quizContext.Entries

@@ -6,6 +6,8 @@
     {
         Task<Entry> GetEntryDetailsByIdAsync(long entryId, CancellationToken cancellationToken);
 
+        Task<Entry> GetEntryByIdAsync(long entryId, CancellationToken cancellationToken);
+
         Task<Entry> AddEntryAsync(Entry entry, CancellationToken cancellationToken);
     }
 }
