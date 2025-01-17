@@ -1,11 +1,12 @@
-import { Alert, Box, Button, MobileStepper, Typography } from "@mui/material";
+import { Alert, Box, MobileStepper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Question } from "../../shared/types/entities/Question";
 import QuestionAnswers from "./QuestionAnswers";
 import { useState } from "react";
 import { EntryAnswer } from "../../shared/types/entities/EntryAnswer";
-import { KeyboardArrowRight, KeyboardArrowLeft } from '@mui/icons-material';
 import useInitialValue from "../../shared/hooks/useInitialValue";
+import NextButton from "./Buttons/NextButton";
+import PreviousButton from "./Buttons/PreviousButton";
 
 const QuizQuestion = ({ question, questionCount, onNextQuestion, onPreviousQuestion }: {
     question: Question,
@@ -29,6 +30,12 @@ const QuizQuestion = ({ question, questionCount, onNextQuestion, onPreviousQuest
         setValidationError(false);
         await onPreviousQuestion(entryAnswers);
     };
+
+    const handleFinish = async () => {
+        if (entryAnswers.length === 0) {
+            setValidationError(true);
+        }
+    }
 
     return (
         <Grid container>
@@ -58,16 +65,17 @@ const QuizQuestion = ({ question, questionCount, onNextQuestion, onPreviousQuest
                         activeStep={question.id - 1}
                         sx={{ maxWidth: 400, flexGrow: 1 }}
                         nextButton={
-                            <Button onClick={handleNextQuestion} disabled={question.id === questionCount} size="small" >
-                                Next
-                                <KeyboardArrowRight />
-                            </Button>
+                            <NextButton
+                                onClick={handleNextQuestion}
+                                onFinish={handleFinish}
+                                isLastQuestion={questionCount === question.id}
+                            />
                         }
                         backButton={
-                            <Button onClick={handlePreviousQuestion} disabled={question.id === 1} size="small" >
-                                <KeyboardArrowLeft />
-                                Back
-                            </Button>
+                            <PreviousButton
+                                onClick={handlePreviousQuestion}
+                                disabled={question.id === 1}
+                            />
                         }
                     />
                 </Box>
