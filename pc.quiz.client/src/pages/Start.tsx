@@ -38,9 +38,9 @@ const Start = () => {
     }
 
     return (
-        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }}>
+        <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '70vh' }}>
             <Grid size={12}>
-                <Typography variant='h2' align='center'>
+                <Typography variant='h2' align='center' sx={{paddingBottom: '40px'}}>
                     Welcome!
                 </Typography>
             </Grid>
