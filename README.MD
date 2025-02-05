@@ -28,12 +28,12 @@ There are 3 question types:
 The user has to go through 10 questions and if they score high enough, they appear on the leaderboard among the top 10 highest scored entries.
 
 ### Backend Key Points
-- Clean/Onion architecture implementation
-- Using CQRS and Mediator design patterns
+- **Clean/Onion architecture** implementation
+- Using **CQRS** and **Mediator** design patterns
 - Exception Filters
 
 ### Frontend Key Points
-- TanStack + Axios layers in frontend
+- TanStack + Axios API layer in frontend
 - Material UI[^3]
 - Vite
 
