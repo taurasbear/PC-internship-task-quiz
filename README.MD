@@ -4,21 +4,6 @@
 
 This project is built with React (TypeScript) and ASP.NET Core with an in-memory database.
 
-### Instructions
-
-#### Visual Studio 2022
-1. Open solution file
-2. Start project[^1]
-3. Web app should launch in browser[^2]
-
-#### VS Code (Frontend project only)
-1. Go to 'pc.quiz.client' in terminal
-2. Run command:
-
-```
-npm run dev
-```
-
 ### About web app
 There are 3 question types:
 - Radio buttons
@@ -55,6 +40,21 @@ The user has to go through 10 questions and if they score high enough, they appe
 ![Example of test validation](quiz-example-2.png)
 
 ![Example of start menu](quiz-example-3.png)
+
+### Instructions
+
+#### Visual Studio 2022
+1. Open solution file
+2. Start project[^1]
+3. Web app should launch in browser[^2]
+
+#### VS Code (Frontend project only)
+1. Go to 'pc.quiz.client' in terminal
+2. Run command:
+
+```
+npm run dev
+```
 
 ### Additional Information
 
